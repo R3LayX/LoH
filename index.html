@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A Letter of Hope — handwritten letters of encouragement with handmade trinkets for anyone facing cancer, depression, anxiety, or a tough season in life." />
+  <title>A Letter of Hope — Hope, Delivered.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Caveat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Brand Color Variables ── */
+    :root {
+      --dusty-rose: #D4A5A5;
+      --soft-blush: #F2D0C9;
+      --warm-cream: #FFF8F0;
+      --golden-honey: #E8B86D;
+      --slate-grey: #5C6B73;
+      --deep-walnut: #4A3728;
+      --sage-green: #9CAF88;
+      --lavender-mist: #C9B8D6;
+      --powder-blue: #B5CDD6;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--warm-cream);
+      color: var(--slate-grey);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Paper Texture Overlay ── */
+    .paper-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.08;
+      background-image: url('/paper-texture-overlay.png');
+      background-repeat: repeat;
+      background-size: 300px 300px;
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--deep-walnut);
+    }
+    h1 { font-size: clamp(2.2rem, 5.5vw, 3rem); }
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.25rem);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    h3 { font-size: clamp(1.2rem, 2.5vw, 1.75rem); }
+    .section-label {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dusty-rose);
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--slate-grey);
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+    .handwritten {
+      font-family: 'Caveat', cursive;
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: var(--deep-walnut);
+      line-height: 1.3;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 248, 240, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 165, 165, 0.2);
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+    }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--deep-walnut);
+      line-height: 1;
+    }
+    .nav-logo-text span { color: var(--dusty-rose); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--slate-grey);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--dusty-rose); }
+    .nav-cta {
+      background: var(--dusty-rose);
+      color: var(--warm-cream) !important;
+      padding: 0.55rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .nav-cta:hover { background: #c48f8f !important; color: var(--warm-cream) !important; }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--deep-walnut);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── Sections ── */
+    section { padding: 90px 0; }
+    section + section { padding-top: 0; }
+    section.alt-bg { background: var(--soft-blush); }
+    section.alt-bg h2 { color: var(--deep-walnut); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 72px;
+      background: linear-gradient(135deg, var(--soft-blush) 0%, var(--dusty-rose) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,248,240,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: -5%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(156,175,136,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-content { max-width: 540px; }
+    .hero h1 {
+      color: var(--warm-cream);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 .highlight {
+      color: var(--golden-honey);
+      font-style: italic;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      color: rgba(255, 248, 240, 0.9);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .hero .tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+      color: var(--golden-honey);
+      margin-bottom: 0.75rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-image-card {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(74, 55, 40, 0.2);
+      max-width: 420px;
+      width: 100%;
+      transform: rotate(1.5deg);
+      transition: transform 0.5s ease;
+    }
+    .hero-image-card:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+    .hero-image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 2rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn-primary {
+      background: var(--golden-honey);
+      color: var(--deep-walnut);
+      box-shadow: 0 4px 16px rgba(232, 184, 109, 0.35);
+    }
+    .btn-primary:hover {
+      background: #e0ad5e;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 184, 109, 0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--warm-cream);
+      border: 2px solid rgba(255, 248, 240, 0.35);
+    }
+    .btn-secondary:hover {
+      border-color: var(--warm-cream);
+      background: rgba(255, 248, 240, 0.1);
+    }
+
+    /* ── How It Works ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .step {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--warm-cream);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(74, 55, 40, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(212, 165, 165, 0.1);
+    }
+    .step:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(74, 55, 40, 0.1);
+    }
+    .step-number {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--soft-blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--deep-walnut);
+    }
+    .step h3 { margin-bottom: 0.6rem; }
+    .step p { color: var(--slate-grey); font-size: 0.95rem; }
+    .step-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── Who It's For ── */
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .who-card {
+      background: var(--warm-cream);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(74, 55, 40, 0.06);
+      border: 1px solid rgba(212, 165, 165, 0.08);
+      transition: transform 0.3s ease;
+    }
+    .who-card:hover { transform: translateY(-4px); }
+    .who-card .emoji { font-size: 2.2rem; margin-bottom: 0.75rem; }
+    .who-card h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+    .who-card p { color: var(--slate-grey); font-size: 0.9rem; }
+
+    /* ── Pricing ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .pricing-card {
+      background: var(--warm-cream);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(74, 55, 40, 0.06);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(212, 165, 165, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(74, 55, 40, 0.1);
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--dusty-rose);
+      position: relative;
+      background: linear-gradient(180deg, var(--soft-blush) 0%, var(--warm-cream) 100%);
+    }
+    .pricing-card.featured::before {
+      content: 'Most Loved';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--dusty-rose);
+      color: var(--warm-cream);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+    }
+    .pricing-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--deep-walnut);
+      margin-bottom: 0.5rem;
+    }
+    .pricing-price {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: var(--dusty-rose);
+      margin-bottom: 0.25rem;
+    }
+    .pricing-price span {
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--slate-grey);
+      font-weight: 400;
+    }
+    .pricing-desc {
+      color: var(--slate-grey);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+    .pricing-features li {
+      font-size: 0.88rem;
+      color: var(--slate-grey);
+      padding: 0.3rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--sage-green);
+      font-weight: 700;
+    }
+    .pricing-card .btn { width: 100%; justify-content: center; }
+
+    /* ── About ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-image {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(74, 55, 40, 0.1);
+    }
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .about-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-walnut);
+      margin-bottom: 1rem;
+    }
+    .about-text p {
+      color: var(--slate-grey);
+      margin-bottom: 1rem;
+    }
+    .about-text .signoff {
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      color: var(--dusty-rose);
+      margin-top: 1.5rem;
+    }
+
+    /* ── Trinket Showcase ── */
+    .trinket-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .trinket-card {
+      background: var(--warm-cream);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(74, 55, 40, 0.06);
+      border: 1px solid rgba(212, 165, 165, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .trinket-card:hover { transform: translateY(-4px); }
+    .trinket-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .trinket-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--deep-walnut);
+      margin-bottom: 0.3rem;
+    }
+    .trinket-card p {
+      font-size: 0.9rem;
+      color: var(--slate-grey);
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(212, 165, 165, 0.2);
+      padding: 1.2rem 0;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--deep-walnut);
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 0.5rem 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: var(--dusty-rose);
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-question::after {
+      content: '−';
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      color: var(--slate-grey);
+      font-size: 0.95rem;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-bottom: 0.5rem;
+    }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--deep-walnut) 0%, #5a3d2a 100%);
+      color: var(--warm-cream);
+      text-align: center;
+      padding: 90px 0;
+    }
+    .cta-section h2 { color: var(--warm-cream); }
+    .cta-section p {
+      color: rgba(255, 248, 240, 0.8);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      font-size: 1.125rem;
+    }
+    .btn-cta {
+      background: var(--golden-honey);
+      color: var(--deep-walnut);
+      font-size: 1.05rem;
+      padding: 1rem 2.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .btn-cta:hover {
+      background: #e0ad5e;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--deep-walnut);
+      color: rgba(255, 248, 240, 0.55);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer a { color: rgba(255, 248, 240, 0.7); }
+    footer a:hover { color: var(--golden-honey); }
+    footer .social-links { display: flex; gap: 1.5rem; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .nav-logo img { height: 32px; }
+      .nav-logo-text { font-size: 1rem; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 248, 240, 0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid rgba(212, 165, 165, 0.2);
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+      .hero-content { max-width: 100%; }
+      .hero-buttons { justify-content: center; }
+      .hero-image-card { max-width: 340px; margin: 0 auto; }
+
+      .steps { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .trinket-showcase { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 60px 0; }
+      .hero { min-height: 90vh; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      footer .container { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Paper texture overlay -->
+  <div class="paper-overlay"></div>
+
+  <!-- ═══════════ Navigation ═══════════ -->
+  <nav>
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <img src="/logo-concept.png" alt="A Letter of Hope" />
+        <span class="nav-logo-text">A Letter of <span>Hope</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#letters">Our Letters</a></li>
+        <li><a href="#who">Who It's For</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#order" class="nav-cta">Send a Letter</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════ Hero ═══════════ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="tagline">Hope, delivered. ✨</div>
+        <span class="section-label" style="color: rgba(255,248,240,0.65);">Handwritten • Handmade • Heartfelt</span>
+        <h1>Someone you love is going through <span class="highlight">a hard season.</span></h1>
+        <p>Send them a beautifully handwritten letter of encouragement, packed with handmade trinkets — a tiny gift that says <em>"I see you, I'm here, and I believe in you."</em></p>
+        <div class="hero-buttons">
+          <a href="#order" class="btn btn-primary">Send a Letter →</a>
+          <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-card">
+          <img src="/hero-brand-mood.png" alt="A letter-writing scene — warm, hopeful, handmade" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ How It Works ═══════════ -->
+  <section id="how-it-works">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center;">Simple & Personal</span>
+      <h2>How It Works</h2>
+      <p class="subtitle">In just a few steps, a little light arrives in their mailbox.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">📝</div>
+          <div class="step-number">1</div>
+          <h3>Tell Us About Them</h3>
+          <p>Share their name, what they're going through, and what makes them smile. Every detail helps us write a letter that feels truly personal.</p>
+        </div>
+        <div class="step">
+          <div class="step-icon">✂️</div>
+          <div class="step-number">2</div>
+          <h3>We Write & Craft</h3>
+          <p>We handwrite a warm letter on premium paper and pair it with handmade trinkets — a bookmark, a sticker, a tiny keepsake chosen just for them.</p>
+        </div>
+        <div class="step">
+          <div class="step-icon">💌</div>
+          <div class="step-number">3</div>
+          <h3>We Mail It With Love</h3>
+          <p>Your letter arrives in a beautifully sealed envelope, addressed by hand. No tracking numbers — just the old-fashioned magic of real mail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ Who It's For ═══════════ -->
+  <section id="who" class="alt-bg">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center;">Everyone Deserves Hope</span>
+      <h2>Who These Letters Are For</h2>
+      <p class="subtitle">Sometimes the smallest gesture carries the most weight. These letters are for anyone who needs reminding they're not alone.</p>
+      <div class="who-grid">
+        <div class="who-card">
+          <div class="emoji">🎗️</div>
+          <h3>Facing Cancer</h3>
+          <p>For anyone in treatment, recovery, or supporting a loved one through the journey. A letter arrives like a hug on hard days.</p>
+        </div>
+        <div class="who-card">
+          <div class="emoji">💜</div>
+          <h3>Depression</h3>
+          <p>When the world feels heavy, a handwritten note can be a gentle reminder that someone sees you, believes in you, and is holding space for you.</p>
+        </div>
+        <div class="who-card">
+          <div class="emoji">🫂</div>
+          <h3>Anxiety</h3>
+          <p>For the overthinkers, the worriers, the ones who carry too much. A letter with a tiny trinket to hold onto when thoughts get loud.</p>
+        </div>
+        <div class="who-card">
+          <div class="emoji">🌱</div>
+          <h3>Tough Seasons</h3>
+          <p>Grief, loss, loneliness, burnout, heartbreak — any season that feels too hard to walk through alone. Hope fits in an envelope.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ Our Letters / Pricing ═══════════ -->
+  <section id="letters">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center;">Choose Your Letter</span>
+      <h2>Send Encouragement, Your Way</h2>
+      <p class="subtitle">One letter, a subscription, or a bundle — pick what fits your heart and theirs.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-name">Single Letter</div>
+          <div class="pricing-price">$12 <span>/ one</span></div>
+          <p class="pricing-desc">One handwritten letter + handmade trinkets, mailed with care.</p>
+          <ul class="pricing-features">
+            <li>Full-page handwritten letter</li>
+            <li>2–3 handmade trinkets</li>
+            <li>Beautiful envelope & wax seal</li>
+            <li>Hand-addressed delivery</li>
+          </ul>
+          <a href="#" class="btn btn-primary order-btn" data-plan="single">Send One →</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-name">Monthly Subscription</div>
+          <div class="pricing-price">$10 <span>/ month</span></div>
+          <p class="pricing-desc">A fresh letter of hope every month, with new trinkets each time.</p>
+          <ul class="pricing-features">
+            <li>Monthly handwritten letter</li>
+            <li>Fresh trinkets each delivery</li>
+            <li>Priority personalization</li>
+            <li>Free birthday bonus letter</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <a href="#" class="btn btn-primary order-btn" data-plan="monthly">Subscribe Now →</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-name">Digital Letter</div>
+          <div class="pricing-price">$5 <span>/ one</span></div>
+          <p class="pricing-desc">A beautifully written email letter — same warmth, no physical delivery.</p>
+          <ul class="pricing-features">
+            <li>Full-page digital letter</li>
+            <li>Printable trinket designs</li>
+            <li>Delivered to their inbox</li>
+            <li>Eco-friendly option</li>
+          </ul>
+          <a href="#" class="btn btn-secondary order-btn" data-plan="digital">Send Digital →</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-name">Bundle (5 Letters)</div>
+          <div class="pricing-price">$45 <span>/ 5 pack</span></div>
+          <p class="pricing-desc">Five letters to send over time — perfect for ongoing encouragement.</p>
+          <ul class="pricing-features">
+            <li>5 handwritten letters</li>
+            <li>Trinkets with each letter</li>
+            <li>Send all at once or spaced out</li>
+            <li>Best value — save $15</li>
+          </ul>
+          <a href="#" class="btn btn-primary order-btn" data-plan="bundle">Get the Bundle →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ Trinket Showcase ═══════════ -->
+  <section class="alt-bg">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center;">Handmade With Care</span>
+      <h2>What Comes Inside</h2>
+      <p class="subtitle">Each letter arrives with a tiny collection of handmade keepsakes — little reminders that someone is thinking of them.</p>
+      <div class="trinket-showcase">
+        <div class="trinket-card">
+          <img src="/trinket-mockup-bookmarks.png" alt="Pressed flower bookmark trinkets" loading="lazy" />
+          <h4>🌸 Pressed Flower Bookmarks</h4>
+          <p>Real dried flowers laminated into bookmarks with ribbon tassels. Back reads "You are loved" in handwritten script. A gentle, nature-touched keepsake.</p>
+        </div>
+        <div class="trinket-card">
+          <img src="/trinket-mockup-stickers-keepsakes.png" alt="Stickers and keepsake cards" loading="lazy" />
+          <h4>🌟 Hope Stickers & Keepsake Cards</h4>
+          <p>Wax seal heart stamps, "You matter" script stickers, tiny keepsake cards with hand-drawn floral borders — collectible encouragement they can carry anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ About the Founder ═══════════ -->
+  <section id="about">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center;">The Story</span>
+      <h2>Why A Letter of Hope?</h2>
+      <p class="subtitle">Born from a personal journey through cancer, one letter at a time.</p>
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="/hero-brand-mood.png" alt="Letter writing scene — the heart of A Letter of Hope" loading="lazy" />
+        </div>
+        <div class="about-text">
+          <h3>When words feel small, a letter can hold them.</h3>
+          <p>After my own cancer diagnosis, I learned something surprising: the smallest gestures carried the most weight. A handwritten note from a friend arrived on a day I couldn't get out of bed. I kept it beside me, re-reading it on hard days.</p>
+          <p>That single letter sparked something. I started writing to others in treatment, and to friends navigating depression and loss. Every time, the response was the same — <em>"This meant more than you know."</em></p>
+          <p><strong>A Letter of Hope</strong> was born to do just that: put real, tangible love into envelopes and send it to people who need reminding that they are not alone.</p>
+          <p class="handwritten" style="margin-top: 1rem;">Every letter is written by hand, from my heart to theirs.</p>
+          <div class="signoff">— With hope, always</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FAQ ═══════════ -->
+  <section id="faq" class="alt-bg">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center;">Questions?</span>
+      <h2>Frequently Asked Questions</h2>
+      <p class="subtitle">Everything you need to know about sending hope through the mail.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">Who are these letters for?</button>
+          <div class="faq-answer">
+            <p>Anyone going through a hard season — cancer treatment, depression, anxiety, grief, loneliness, or just a tough stretch in life. You can send a letter to a friend, family member, or even to yourself. <em>You deserve encouragement too.</em></p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What kind of trinkets come with the letter?</button>
+          <div class="faq-answer">
+            <p>Each letter includes 2–3 handmade items — think pressed-flower bookmarks, illustrated stickers, tiny encouragement cards, origami stars, or small keepsakes. They're chosen to match the recipient's personality and the season they're in.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How long does delivery take?</button>
+          <div class="faq-answer">
+            <p>We write and assemble each letter by hand, so please allow 3–5 business days for us to prepare your letter. After that, standard mail delivery times apply (usually 2–5 days within the US). International orders may take 7–14 business days.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I send a letter anonymously?</button>
+          <div class="faq-answer">
+            <p>Absolutely. Many people choose to send letters signed <em>"Someone who cares about you"</em> or <em>"A Secret Friend."</em> Just let us know in the order notes how you'd like the letter signed.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What if I'm not a good writer?</button>
+          <div class="faq-answer">
+            <p>No worries at all! Our writers are skilled at crafting warm, personal letters. You can share as much or as little as you'd like — we'll handle the rest. Every letter still feels authentic and unique.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Do you ship internationally?</button>
+          <div class="faq-answer">
+            <p>Yes! We ship worldwide. International delivery may take 7–14 business days. Digital letters are available instantly anywhere in the world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA / Order ═══════════ -->
+  <section class="cta-section" id="order">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center; color: rgba(255,248,240,0.5);">Ready to brighten someone's day?</span>
+      <h2>Send a Letter of Hope Today</h2>
+      <p>Your words — paired with a little handmade love — could be exactly what they need to hear right now.</p>
+      <a href="#" class="btn btn-cta" id="stripeCheckout">💌 Order Your Letter →</a>
+      <p style="margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.6;">Secure checkout via Stripe · Satisfaction guaranteed</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ Footer ═══════════ -->
+  <footer>
+    <div class="container">
+      <span>&copy; 2026 A Letter of Hope. Made with love.</span>
+      <div class="social-links">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Email">hello@aletterofhope.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Mobile Nav Toggle ──
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // ── Close mobile nav on link click ──
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ── FAQ Toggle ──
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        item.classList.toggle('open');
+      });
+    });
+
+    // ── Smooth scroll for anchor links ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ── Stripe Payment Link Placeholder ──
+    // When Stripe products are created, update these links.
+    const stripeLinks = {
+      single: '#',    // Replace with your Stripe single-letter payment link
+      monthly: '#',   // Replace with your Stripe subscription payment link
+      digital: '#',   // Replace with your Stripe digital-letter payment link
+      bundle: '#'     // Replace with your Stripe bundle payment link
+    };
+
+    document.querySelectorAll('.order-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const plan = this.dataset.plan;
+        const link = stripeLinks[plan];
+        if (link && link !== '#') {
+          window.open(link, '_blank');
+        } else {
+          alert('✨ Stripe payment links coming soon! For now, email us at hello@aletterofhope.com to place your order.');
+        }
+      });
+    });
+
+    document.getElementById('stripeCheckout').addEventListener('click', function(e) {
+      e.preventDefault();
+      const link = stripeLinks.single;
+      if (link && link !== '#') {
+        window.open(link, '_blank');
+      } else {
+        alert('✨ We\'re setting up our payment system! Until then, email us at hello@aletterofhope.com to order.');
+      }
+    });
+  </script>
+</body>
+</html>
