@@ -7,6 +7,23 @@ const PORT = 3000;
 // Serve static files from the current directory
 app.use(express.static(__dirname));
 
+// Serve specific pages
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/letters', (req, res) => {
+  res.sendFile(path.join(__dirname, 'letters.html'));
+});
+
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, 'about.html'));
+});
+
+app.get('/contact', (req, res) => {
+  res.sendFile(path.join(__dirname, 'contact.html'));
+});
+
 // Fall through to index.html for SPA-like navigation (Express 5 syntax)
 app.get('/{*path}', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));

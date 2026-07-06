@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact A Letter of Hope — have a question or want to send a message? We'd love to hear from you." />
+  <title>Contact Us — A Letter of Hope</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Caveat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    /* Contact-specific styles */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
+      align-items: start;
+      margin-top: 1rem;
+    }
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--deep-walnut);
+      margin-bottom: 0.75rem;
+    }
+    .contact-info p {
+      color: var(--slate-grey);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-detail .icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .contact-detail .label {
+      font-weight: 600;
+      color: var(--deep-walnut);
+      font-size: 0.9rem;
+    }
+    .contact-detail .value {
+      color: var(--slate-grey);
+      font-size: 0.9rem;
+    }
+    .contact-form {
+      background: var(--warm-cream);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(74, 55, 40, 0.06);
+      border: 1px solid rgba(212, 165, 165, 0.1);
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--deep-walnut);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      border: 1px solid rgba(212, 165, 165, 0.3);
+      border-radius: 10px;
+      background: var(--warm-cream);
+      color: var(--deep-walnut);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--dusty-rose);
+      box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.15);
+    }
+    .form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--slate-grey);
+      opacity: 0.5;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-submit {
+      background: var(--dusty-rose);
+      color: var(--warm-cream);
+      padding: 0.85rem 2.5rem;
+      border: none;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .form-submit:hover {
+      background: #c48f8f;
+      transform: translateY(-2px);
+    }
+    /* Confirmation message */
+    .confirm-message {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--warm-cream);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(74, 55, 40, 0.06);
+      border: 1px solid rgba(212, 165, 165, 0.1);
+    }
+    .confirm-message.visible { display: block; }
+    .confirm-message .check {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .confirm-message h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-walnut);
+      margin-bottom: 0.75rem;
+    }
+    .confirm-message p {
+      color: var(--slate-grey);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .confirm-message + .contact-form { display: none; }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="paper-overlay"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">
+        <img src="/logo-concept.png" alt="A Letter of Hope" />
+        <span class="nav-logo-text">A Letter of <span>Hope</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#how-it-works">How It Works</a></li>
+        <li><a href="/#letters">Our Letters</a></li>
+        <li><a href="/#who">Who It's For</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/#order" class="nav-cta">Send a Letter</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mini Hero -->
+  <section class="hero-mini">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center;">Get in Touch</span>
+      <h2>We'd Love to Hear From You</h2>
+      <p class="subtitle">Have a question about our letters, need help with an order, or just want to say hello? Send us a message.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Info Side -->
+        <div class="contact-info">
+          <h3>How Can We Help?</h3>
+          <p>Whether you're sending a letter to a loved one, looking for the perfect gift, or have a question about how it all works — we're here for you.</p>
+
+          <div class="contact-detail">
+            <span class="icon">✉️</span>
+            <div>
+              <div class="label">Email</div>
+              <div class="value">hello@aletterofhope.com</div>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span class="icon">📬</span>
+            <div>
+              <div class="label">Mail</div>
+              <div class="value">A Letter of Hope<br/>P.O. Box 1234<br/>Nashville, TN 37201</div>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span class="icon">💬</span>
+            <div>
+              <div class="label">Social</div>
+              <div class="value">Follow us on Instagram &amp; TikTok @aletterofhope</div>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span class="icon">⏰</span>
+            <div>
+              <div class="label">Response Time</div>
+              <div class="value">We typically respond within 24-48 hours. Every message is read with care.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Side -->
+        <div>
+          <!-- Confirmation message -->
+          <div class="confirm-message" id="confirmMessage">
+            <div class="check">💌</div>
+            <h3>Your Message Has Been Sent!</h3>
+            <p>Thank you for reaching out. We'll read your message and get back to you as soon as we can. In the meantime, know that you are seen, loved, and never alone.</p>
+            <p style="margin-top: 1.5rem;">
+              <a href="/" class="btn btn-primary">Return Home</a>
+            </p>
+          </div>
+
+          <!-- Contact form -->
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email *</label>
+                <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">Select a topic...</option>
+                <option value="order">Order Question</option>
+                <option value="gift">Gift of Hope Question</option>
+                <option value="general">General Question</option>
+                <option value="story">Sharing My Story</option>
+                <option value="partnership">Partnership / Collaboration</option>
+                <option value="other">Something Else</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message *</label>
+              <textarea id="message" name="message" placeholder="Tell us what's on your heart..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Message 💛</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center; color: rgba(255,248,240,0.5);">Still have questions?</span>
+      <h2>Visit our FAQ or send a letter</h2>
+      <p>Many common questions are answered in our FAQ. Or jump straight to sending hope to someone you love.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/#faq" class="btn btn-cta" style="background: transparent; border: 2px solid var(--golden-honey); color: var(--golden-honey);">Read FAQ</a>
+        <a href="/#order" class="btn btn-cta">💌 Send a Letter of Hope →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <span>&copy; 2026 A Letter of Hope. Made with love.</span>
+      <div class="social-links">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Email">hello@aletterofhope.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+
+    // Contact form submission
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Hide form, show confirmation
+        form.style.display = 'none';
+        document.getElementById('confirmMessage').classList.add('visible');
+      });
+    }
+  </script>
+</body>
+</html>
