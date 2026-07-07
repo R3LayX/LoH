@@ -40,6 +40,12 @@
       margin: 0 auto;
       padding: 0 24px;
     }
+    .container-narrow {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
     /* ── Paper Texture Overlay ── */
     .paper-overlay {
@@ -295,6 +301,24 @@
       border-color: var(--warm-cream);
       background: rgba(255, 248, 240, 0.1);
     }
+    .btn-walnut {
+      background: var(--deep-walnut);
+      color: var(--warm-cream);
+      box-shadow: 0 4px 16px rgba(74, 55, 40, 0.2);
+    }
+    .btn-walnut:hover {
+      background: #5a3d2a;
+      transform: translateY(-2px);
+    }
+    .btn-outline-rose {
+      background: transparent;
+      color: var(--dusty-rose);
+      border: 2px solid var(--dusty-rose);
+    }
+    .btn-outline-rose:hover {
+      background: var(--dusty-rose);
+      color: var(--warm-cream);
+    }
 
     /* ── How It Works ── */
     .steps {
@@ -358,7 +382,27 @@
     .who-card h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
     .who-card p { color: var(--slate-grey); font-size: 0.9rem; }
 
-    /* ── Pricing ── */
+    /* ── Pricing / More Than Just a Letter ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .feature-item {
+      background: var(--warm-cream);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(74, 55, 40, 0.06);
+      border: 1px solid rgba(212, 165, 165, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .feature-item:hover { transform: translateY(-4px); }
+    .feature-item .icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+    .feature-item h4 { font-size: 1.05rem; margin-bottom: 0.4rem; color: var(--deep-walnut); }
+    .feature-item p { color: var(--slate-grey); font-size: 0.9rem; }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -446,38 +490,31 @@
     .pricing-card .btn { width: 100%; justify-content: center; }
 
     /* ── About ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
+    .about-content {
+      max-width: 720px;
+      margin: 0 auto;
     }
-    .about-image {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(74, 55, 40, 0.1);
-    }
-    .about-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .about-text h3 {
+    .about-content .story-quote {
       font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--deep-walnut);
-      margin-bottom: 1rem;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--dusty-rose);
+      text-align: center;
+      max-width: 540px;
+      margin: 2rem auto;
+      line-height: 1.5;
     }
-    .about-text p {
+    .about-content p {
+      margin-bottom: 1.2rem;
+      line-height: 1.75;
       color: var(--slate-grey);
-      margin-bottom: 1rem;
     }
-    .about-text .signoff {
+    .about-content .signoff {
       font-family: 'Caveat', cursive;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: var(--dusty-rose);
       margin-top: 1.5rem;
+      text-align: right;
     }
 
     /* ── What's Inside / Happy Mail ── */
@@ -557,6 +594,88 @@
       padding-bottom: 0.5rem;
     }
 
+    /* ── Contact Form ── */
+    .contact-form-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--warm-cream);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 24px rgba(74, 55, 40, 0.06);
+      border: 1px solid rgba(212, 165, 165, 0.1);
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--deep-walnut);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      border: 1px solid rgba(212, 165, 165, 0.3);
+      border-radius: 10px;
+      background: var(--warm-cream);
+      color: var(--deep-walnut);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--dusty-rose);
+      box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.15);
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-submit {
+      background: var(--dusty-rose);
+      color: var(--warm-cream);
+      padding: 0.85rem 2.5rem;
+      border: none;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .form-submit:hover {
+      background: #c48f8f;
+      transform: translateY(-2px);
+    }
+    .confirm-message {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .confirm-message.visible { display: block; }
+    .confirm-message .check { font-size: 3rem; margin-bottom: 1rem; }
+    .confirm-message h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-walnut);
+      margin-bottom: 0.75rem;
+    }
+    .confirm-message p { color: var(--slate-grey); }
+    .confirm-message + form { display: none; }
+
     /* ── CTA Section ── */
     .cta-section {
       background: linear-gradient(135deg, var(--deep-walnut) 0%, #5a3d2a 100%);
@@ -633,8 +752,8 @@
       .hero-image-card { max-width: 340px; margin: 0 auto; }
 
       .steps { grid-template-columns: repeat(2, 1fr); }
-      .about-grid { grid-template-columns: 1fr; }
       .happy-mail { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
@@ -666,6 +785,7 @@
         <li><a href="#who">Who It's For</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
         <li><a href="#order" class="nav-cta">Send a Letter</a></li>
       </ul>
     </div>
@@ -693,8 +813,49 @@
     </div>
   </section>
 
+  <!-- ═══════════ More Than Just a Letter ═══════════ -->
+  <section>
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center;">What You'll Receive</span>
+      <h2>More Than Just a Letter</h2>
+      <p class="subtitle">Every package is thoughtfully prepared with care — because sometimes the smallest gestures carry the most weight.</p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="icon">💌</div>
+          <h4>Heartfelt Letter</h4>
+          <p>A personally handwritten letter filled with encouragement, written from the heart and addressed just for them.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">🔖</div>
+          <h4>Beautiful Bookmarks</h4>
+          <p>Pressed-flower bookmarks and gentle reminder cards to tuck into a book, a pocket, or share with a friend.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">🌟</div>
+          <h4>Uplifting Stickers</h4>
+          <p>"You are loved" stickers, faith-filled reminder cards, and small keepsakes to brighten their day.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">🍪</div>
+          <h4>Recipe Cards</h4>
+          <p>Warm, comforting recipe cards that carry a little taste of home and a reminder that someone cares.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">🎁</div>
+          <h4>Thoughtful Extras</h4>
+          <p>A rotating collection of small surprises — each package brings something new to make them smile.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">🙏</div>
+          <h4>Faith-Based Encouragement</h4>
+          <p>Every letter carries a message of faith, hope, and the reminder that they are never alone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════ How It Works ═══════════ -->
-  <section id="how-it-works">
+  <section id="how-it-works" class="alt-bg">
     <div class="container">
       <span class="section-label" style="display: block; text-align: center;">Simple & Personal</span>
       <h2>How It Works</h2>
@@ -703,33 +864,33 @@
         <div class="step">
           <div class="step-icon">🛒</div>
           <div class="step-number">1</div>
-          <h3>Choose Your Letter Experience</h3>
+          <h3>Choose Your Letter</h3>
           <p>Select a single Letter of Hope, join the monthly subscription, or send a Gift of Hope to someone special.</p>
         </div>
         <div class="step">
           <div class="step-icon">✍️</div>
           <div class="step-number">2</div>
           <h3>We Prepare It With Care</h3>
-          <p>Each package is thoughtfully created with a heartfelt letter of encouragement and rotating uplifting extras such as bookmarks, stickers, recipe cards, and little surprises.</p>
+          <p>Each package is thoughtfully created with a heartfelt letter and rotating uplifting extras.</p>
         </div>
         <div class="step">
           <div class="step-icon">📬</div>
           <div class="step-number">3</div>
-          <h3>Hope Arrives in the Mailbox</h3>
-          <p>Your Letter of Hope is mailed directly to you — or to someone you love — creating a quiet moment of comfort, faith, and encouragement.</p>
+          <h3>Hope Arrives by Mail</h3>
+          <p>Your Letter of Hope is mailed directly to you — or to someone you love — creating a quiet moment of comfort.</p>
         </div>
         <div class="step">
           <div class="step-icon">💛</div>
           <div class="step-number">4</div>
           <h3>Hold Onto the Reminder</h3>
-          <p>Every letter is created to remind the recipient that they are seen, loved, and not alone. Their story is not over, and there is still hope ahead.</p>
+          <p>Every letter reminds the recipient they are seen, loved, and not alone. Their story is not over.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ═══════════ Who It's For ═══════════ -->
-  <section id="who" class="alt-bg">
+  <section id="who">
     <div class="container">
       <span class="section-label" style="display: block; text-align: center;">Everyone Deserves Hope</span>
       <h2>Who These Letters Are For</h2>
@@ -760,7 +921,7 @@
   </section>
 
   <!-- ═══════════ Our Letters / Pricing ═══════════ -->
-  <section id="letters">
+  <section id="letters" class="alt-bg">
     <div class="container">
       <span class="section-label" style="display: block; text-align: center;">Choose Your Letter</span>
       <h2>Send Encouragement, Your Way</h2>
@@ -768,9 +929,9 @@
       <p style="text-align: center; color: var(--slate-grey); font-size: 0.95rem; margin-top: -2.5rem; margin-bottom: 2rem;"><em>Choose 1, 3, 6, or 12 months of hope — we'll send a Letter of Hope package each month for the selected duration.</em></p>
       <div class="pricing-grid">
         <div class="pricing-card">
-          <div class="pricing-name">Single Letter</div>
+          <div class="pricing-name">Single Letter Package</div>
           <div class="pricing-price">$15 <span>/ one</span></div>
-          <p class="pricing-desc">A beautifully handwritten letter of hope, mailed with care on premium paper.</p>
+          <p class="pricing-desc">A one-time envelope of encouragement, created to bring comfort, hope, and a meaningful moment just for you.</p>
           <ul class="pricing-features">
             <li>Full-page handwritten letter</li>
             <li>Premium paper & envelope</li>
@@ -780,9 +941,9 @@
           <a href="https://aletterofhope.co/products/a-letter-of-hope-single-letter-package" target="_blank" rel="noopener" class="btn btn-primary">Send One →</a>
         </div>
         <div class="pricing-card featured">
-          <div class="pricing-name">Monthly Subscription</div>
+          <div class="pricing-name">Monthly Letter Subscription</div>
           <div class="pricing-price">$13 <span>/ month</span></div>
-          <p class="pricing-desc">A fresh letter of hope every month — encouragement that keeps coming.</p>
+          <p class="pricing-desc">A thoughtful letter delivered each month, filled with encouragement and small touches designed to brighten your day.</p>
           <ul class="pricing-features">
             <li>Monthly handwritten letter</li>
             <li>Priority personalization</li>
@@ -794,7 +955,7 @@
         <div class="pricing-card">
           <div class="pricing-name">Gift of Hope<br/>(1 Month)</div>
           <div class="pricing-price">$15 <span>/ one</span></div>
-          <p class="pricing-desc">Give someone you love a month of encouragement — wrapped in a personal letter.</p>
+          <p class="pricing-desc">Send one special month of encouragement to someone who could use a reminder that they are cared for.</p>
           <ul class="pricing-features">
             <li>One handwritten letter</li>
             <li>Gift note included</li>
@@ -806,7 +967,7 @@
         <div class="pricing-card">
           <div class="pricing-name">Gift of Hope<br/>(3 Months)</div>
           <div class="pricing-price">$39 <span>/ 3 months</span></div>
-          <p class="pricing-desc">Three months of hope — a meaningful gift that keeps arriving in their mailbox.</p>
+          <p class="pricing-desc">Three months of heartfelt mail and meaningful encouragement, delivered one letter at a time.</p>
           <ul class="pricing-features">
             <li>3 monthly letters</li>
             <li>Gift note included</li>
@@ -818,7 +979,7 @@
         <div class="pricing-card">
           <div class="pricing-name">Gift of Hope<br/>(6 Months)</div>
           <div class="pricing-price">$72 <span>/ 6 months</span></div>
-          <p class="pricing-desc">Half a year of handwritten encouragement — for someone facing a long season.</p>
+          <p class="pricing-desc">A half-year of uplifting letters and thoughtful surprises for someone deserving of consistent encouragement.</p>
           <ul class="pricing-features">
             <li>6 monthly letters</li>
             <li>Gift note included</li>
@@ -830,21 +991,21 @@
         <div class="pricing-card">
           <div class="pricing-name">Gift of Hope<br/>(12 Months)</div>
           <div class="pricing-price">$120 <span>/ 12 months</span></div>
-          <p class="pricing-desc">A full year of hope. The most meaningful gift you can give — a letter every month.</p>
+          <p class="pricing-desc">A full year of hope delivered by mail—twelve meaningful reminders that someone is thinking of them.</p>
           <ul class="pricing-features">
             <li>12 monthly letters</li>
             <li>Gift note included</li>
             <li>Recipient can personalize</li>
             <li>Year-long encouragement</li>
           </ul>
-          <a href="https://aletterofhope.co/products/gift-of-hope-12-month-gift-copy" target="_blank" rel="noopener" class="btn btn-primary">Give 12 Months →</a>
+          <a href="https://aletterofhope.co/products/gift-of-hope-12-month-gift" target="_blank" rel="noopener" class="btn btn-primary">Give 12 Months →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ What's Inside / Happy Mail Surprises ═══════════ -->
-  <section class="alt-bg">
+  <!-- ═══════════ What's Inside ═══════════ -->
+  <section>
     <div class="container">
       <span class="section-label" style="display: block; text-align: center;">Happy Mail Surprises</span>
       <h2>What's Inside Each Package</h2>
@@ -865,29 +1026,21 @@
   </section>
 
   <!-- ═══════════ About the Founder ═══════════ -->
-  <section id="about">
+  <section id="about" class="alt-bg">
     <div class="container">
       <span class="section-label" style="display: block; text-align: center;">The Story</span>
       <h2>Why A Letter of Hope?</h2>
       <p class="subtitle">Born from a personal journey through cancer, one letter at a time.</p>
-      <div class="about-grid">
-        <div class="about-image">
-          <img src="/hero-brand-mood.png" alt="Letter writing scene — the heart of A Letter of Hope" loading="lazy" />
-        </div>
-        <div class="about-text">
-          <h3>When words feel small, a letter can hold them.</h3>
-          <p>After my own cancer diagnosis, I learned something surprising: the smallest gestures carried the most weight. A handwritten note from a friend arrived on a day I couldn't get out of bed. I kept it beside me, re-reading it on hard days. That note reminded me that I was seen, loved, and never alone — and that my story wasn't over yet.</p>
-          <p>That single letter sparked something. I started writing to others in treatment, and to friends navigating depression and loss. Every time, the response was the same — <em>"This meant more than you know."</em></p>
-          <p><strong>A Letter of Hope</strong> was born from that simple truth: a handwritten letter, wrapped in faith and hope, can be a lifeline to someone who needs reminding they are not forgotten.</p>
-          <p class="handwritten" style="margin-top: 1rem;">Every letter is written by hand, from my heart to theirs.</p>
-          <div class="signoff">— With hope and faith, always</div>
-        </div>
+      <div class="about-content">
+        <p>A Letter of Hope was born during one of the hardest seasons of my life. After being diagnosed with stage 3 cervical cancer in 2024, I experienced firsthand how heavy difficult days can feel—and how deeply a kind word, a thoughtful gesture, or simply knowing someone cares can matter. Through treatment, I saw others facing those same long days, sometimes alone, and it stayed with me. I created A Letter of Hope to send comfort, encouragement, and a little light through the mail—because no one should have to feel like they are walking through a hard season alone.</p>
+        <p class="handwritten" style="margin-top: 1.5rem; text-align: center;">Every letter is written by hand, from my heart to theirs.</p>
+        <div class="signoff">— With hope, always</div>
       </div>
     </div>
   </section>
 
   <!-- ═══════════ FAQ ═══════════ -->
-  <section id="faq" class="alt-bg">
+  <section id="faq">
     <div class="container">
       <span class="section-label" style="display: block; text-align: center;">Questions?</span>
       <h2>Frequently Asked Questions</h2>
@@ -933,6 +1086,62 @@
     </div>
   </section>
 
+  <!-- ═══════════ Contact Us ═══════════ -->
+  <section id="contact" class="alt-bg">
+    <div class="container">
+      <span class="section-label" style="display: block; text-align: center;">Get in Touch</span>
+      <h2>We'd Love to Hear From You</h2>
+      <p class="subtitle">Whether you have a question, a prayer request, or just want to share how a Letter of Hope has touched your life — we're here.</p>
+
+      <div class="contact-form-wrap">
+        <!-- Confirmation message -->
+        <div class="confirm-message" id="confirmMessage">
+          <div class="check">💌</div>
+          <h3>Your Message Has Been Sent!</h3>
+          <p>Thank you for reaching out! We'll be in touch soon. 💛</p>
+          <p style="margin-top: 1.5rem;">
+            <a href="#" class="btn btn-primary">Send Another</a>
+          </p>
+        </div>
+
+        <!-- Contact form -->
+        <form id="contactForm" action="https://formspree.io/f/..." method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name *</label>
+              <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email *</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="">Select a topic...</option>
+              <option value="order">Order Question</option>
+              <option value="gift">Gift of Hope Question</option>
+              <option value="general">General Question</option>
+              <option value="story">Sharing My Story</option>
+              <option value="partnership">Partnership / Collaboration</option>
+              <option value="other">Something Else</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message *</label>
+            <textarea id="message" name="message" placeholder="Tell us what's on your heart..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message 💛</button>
+        </form>
+
+        <p style="margin-top: 1.5rem; text-align: center; color: var(--slate-grey); font-size: 0.9rem;">
+          You can also reach us directly at: <strong>support@aletterofhope.co</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════ CTA / Order ═══════════ -->
   <section class="cta-section" id="order">
     <div class="container">
@@ -940,7 +1149,6 @@
       <h2>Your story is not over.<br/>There is still hope ahead.</h2>
       <p>A handwritten letter, wrapped in faith and love, could be exactly what someone needs to hear right now. Send encouragement that reminds them they are seen, loved, and never alone.</p>
       <a href="https://aletterofhope.co/products/a-letter-of-hope-single-letter-package" target="_blank" rel="noopener" class="btn btn-cta">💌 Send a Letter of Hope →</a>
-      <p style="margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.6;">Powered by Shopify · Secure checkout</p>
     </div>
   </section>
 
@@ -951,7 +1159,7 @@
       <div class="social-links">
         <a href="#" aria-label="Instagram">Instagram</a>
         <a href="#" aria-label="TikTok">TikTok</a>
-        <a href="#" aria-label="Email">hello@aletterofhope.com</a>
+        <a href="#" aria-label="Email">support@aletterofhope.co</a>
       </div>
     </div>
   </footer>
@@ -964,7 +1172,6 @@
       navLinks.classList.toggle('open');
     });
 
-    // ── Close mobile nav on link click ──
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('open');
@@ -990,9 +1197,29 @@
       });
     });
 
-    // ── Shopify Buy Buttons ──
-    // All pricing buttons now link directly to Shopify product pages
-    // with target="_blank" and rel="noopener" attributes.
+    // ── Contact Form ──
+    const form = document.getElementById('contactForm');
+    const confirmMsg = document.getElementById('confirmMessage');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        form.style.display = 'none';
+        confirmMsg.classList.add('visible');
+      });
+    }
+
+    // ── "Send Another" resets form ──
+    if (confirmMsg) {
+      const resetBtn = confirmMsg.querySelector('a');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          confirmMsg.classList.remove('visible');
+          form.style.display = 'block';
+          form.reset();
+        });
+      }
+    }
   </script>
 </body>
 </html>
